@@ -2,7 +2,7 @@ import React from 'react';
 import GlobalStyle from 'styles/GlobalStyle';
 import Header from 'app/components/header';
 
-const App = props => {
+const App = () => {
     return (
         <>
             <GlobalStyle />
