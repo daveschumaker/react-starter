@@ -2,8 +2,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 const config = require('./config');
+const env = process.env.NODE_ENV;
 const PORT = process.env.PORT || 8080;
 
 module.exports = {
@@ -63,6 +65,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            __DEV__: env === 'development',
+            __PRODUCTION__: env === 'production'
+        }),
         new CopyPlugin([{ from: 'src/static', to: './' }]),
         new HtmlWebpackPlugin({
             filename: './index.html',

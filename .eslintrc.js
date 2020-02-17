@@ -21,6 +21,11 @@ module.exports = {
         es6: true
     },
 
+    globals: {
+        __DEV__: true,
+        __PRODUCTION__: true
+    },
+
     plugins: ['react', 'react-hooks'],
 
     rules: {
