@@ -1,8 +1,10 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const PORT = 8080;
+const path = require('path');
+
+const config = require('./config');
+const PORT = process.env.PORT || 8080;
 
 module.exports = {
     entry: './src/app/index.js',
@@ -14,6 +16,7 @@ module.exports = {
             rewrites: [{ from: /./, to: '/index.html' }]
         },
         port: PORT,
+        publicPath: config.BASE_NAME,
         watchOptions: {
             poll: true
         }
@@ -21,7 +24,7 @@ module.exports = {
     output: {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        publicPath: config.BASE_NAME
     },
     resolve: {
         alias: {
@@ -43,6 +46,19 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-url-loader'
+            },
+            {
+                test: /\.(gif|jpg|png)$/,
+                use: {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 25000
+                    }
+                }
             }
         ]
     },
@@ -51,7 +67,8 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './src/templates/index.html',
-            title: ''
+            title: config.APP_TITLE,
+            basename: config.BASE_NAME
         }),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css'
