@@ -1,20 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import device from 'styles/device';
-
-const HeaderStyle = styled.div`
-    font-size: 24px;
-    font-weight: bold;
-    padding: 8px;
-    width: 100%;
-
-    @media ${device.tablet} {
-        font-size: 36px;
-    }
-`;
+import * as S from './styles';
 
 const Header = props => {
-    return <HeaderStyle>{props.children}</HeaderStyle>;
+    return <S.HeaderWrapper>{props.children}</S.HeaderWrapper>;
 };
 
 Header.displayName = 'header';
