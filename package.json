@@ -46,7 +46,7 @@
         "sftp-sync-deploy": "0.7.1",
         "svg-url-loader": "5.0.0",
         "url-loader": "4.1.0",
-        "webpack": "4.42.1",
+        "webpack": "4.43.0",
         "webpack-cli": "3.3.11",
         "webpack-dev-server": "3.10.3"
     },
