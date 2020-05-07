@@ -334,6 +334,6 @@ module.exports = {
         'react/style-prop-object': 'warn',
         // react hooks
         'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
-        'react-hooks/exhaustive-deps': 'warn' // Checks effect dependencies
+        'react-hooks/exhaustive-deps': 0 // Checks effect dependencies
     }
 };
