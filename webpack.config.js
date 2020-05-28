@@ -69,7 +69,11 @@ module.exports = {
             __DEV__: env === 'development',
             __PRODUCTION__: env === 'production'
         }),
-        new CopyPlugin([{ from: 'src/static', to: './' }]),
+        new CopyPlugin({
+            patterns: [
+                { from: 'src/static', to: './' }
+            ]
+        }),
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './src/templates/index.html',
