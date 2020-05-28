@@ -9,8 +9,6 @@ import useDarkMode from 'app/hooks/useDarkMode';
 const App = () => {
     const darkMode = useDarkMode();
 
-    console.log('darkMode??', darkMode);
-
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <GlobalStyle />
