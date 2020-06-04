@@ -31,7 +31,19 @@ const useDarkMode = () => {
             return false;
         }
 
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', handleChange);
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        try {
+            // Handle Chrome & Firefox
+            darkModeQuery.addEventListener('change', handleChange);
+        } catch (addEventListenerError) {
+            try {
+                // Handle Safari
+                darkModeQuery.addListener('change', handleChange);
+            } catch (addListenerError) {
+                console.error(addListenerError);
+            }
+        }
         return () =>
             window
                 .matchMedia('(prefers-color-scheme: dark)')
