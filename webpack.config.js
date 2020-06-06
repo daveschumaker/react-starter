@@ -17,6 +17,8 @@ module.exports = {
             index: 'index.html',
             rewrites: [{ from: /./, to: '/index.html' }]
         },
+        host: '0.0.0.0',
+        hot: true,
         port: PORT,
         publicPath: config.BASE_NAME,
         watchOptions: {
@@ -24,7 +26,8 @@ module.exports = {
         }
     },
     output: {
-        filename: '[name].[contenthash].js',
+        // HotModuleReplacement requires filename format: '[name].[hash].js'
+        filename: env === 'production' ? '[name].[contenthash].js' : '[name].[hash].js',
         path: path.resolve(__dirname, 'dist'),
         publicPath: config.BASE_NAME
     },
@@ -70,9 +73,7 @@ module.exports = {
             __PRODUCTION__: env === 'production'
         }),
         new CopyPlugin({
-            patterns: [
-                { from: 'src/static', to: './' }
-            ]
+            patterns: [{ from: 'src/static', to: './' }]
         }),
         new HtmlWebpackPlugin({
             filename: './index.html',
