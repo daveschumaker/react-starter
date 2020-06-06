@@ -1,5 +1,4 @@
-const isDev = process.env.NODE_ENV === 'development';
-let test;
+const isDev = process.env.NODE_ENV === 'development'; // eslint-disable-line
 
 module.exports = {
     APP_TITLE: 'React Starter Project',
